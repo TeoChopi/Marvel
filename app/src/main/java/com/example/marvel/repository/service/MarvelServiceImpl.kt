@@ -15,12 +15,18 @@ class MarvelServiceImpl : MarvelRepository {
                     if (response.isSuccessful && response.body() != null) {
                         cb.onResponse(response.body()!!)
                     } else {
-                        cb.onFailure(Throwable(response.message()), response)
+                        when (response.code()) {
+                            401 -> cb.onFailure(ApiError.InvalidHash(response.code(), response.message()))
+                            403 -> cb.onFailure(ApiError.Forbidden(response.code(), response.message()))
+                            405 -> cb.onFailure(ApiError.MethodNotAllowed(response.code(), response.message()))
+                            409 -> cb.onFailure(ApiError.MissingAPIKey(response.code(), response.message()))
+                            else -> cb.onFailure(ApiError.InvalidRequest(response.code(), response.message()))
+                        }
                     }
                 }
 
                 override fun onFailure(call: Call<ListResponse>, t: Throwable) {
-                    cb.onFailure(t)
+                    cb.onFailure(ApiError.Unknown(-1, t.message.toString()))
                 }
             })
     }
@@ -32,12 +38,18 @@ class MarvelServiceImpl : MarvelRepository {
                     if (response.isSuccessful && response.body() != null) {
                         cb.onResponse(response.body()!!)
                     } else {
-                        cb.onFailure(Throwable(response.message()), response)
+                        when (response.code()) {
+                            401 -> cb.onFailure(ApiError.InvalidHash(response.code(), response.message()))
+                            403 -> cb.onFailure(ApiError.Forbidden(response.code(), response.message()))
+                            405 -> cb.onFailure(ApiError.MethodNotAllowed(response.code(), response.message()))
+                            409 -> cb.onFailure(ApiError.MissingAPIKey(response.code(), response.message()))
+                            else -> cb.onFailure(ApiError.InvalidRequest(response.code(), response.message()))
+                        }
                     }
                 }
 
                 override fun onFailure(call: Call<DetailResponse>, t: Throwable) {
-                    cb.onFailure(t)
+                    cb.onFailure(ApiError.Unknown(-1, t.message.toString()))
                 }
             })
     }

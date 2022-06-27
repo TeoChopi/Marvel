@@ -1,7 +1,7 @@
 package com.example.marvel.repository.service
 
+import com.example.marvel.repository.model.ApiError
 import okhttp3.OkHttpClient
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
@@ -10,7 +10,7 @@ class MarvelService {
 
     interface CallbackResponse<T> {
         fun onResponse(response: T)
-        fun onFailure(t: Throwable, res: Response<*>? = null)
+        fun onFailure(error: ApiError)
     }
 
     val marvelApi: MarvelApi
