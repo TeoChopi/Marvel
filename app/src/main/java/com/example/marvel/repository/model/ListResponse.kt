@@ -151,7 +151,7 @@ data class Events(
 
 	@field:SerializedName("items")
 	val items: List<ItemsItem?>? = null
-): Serializable
+)
 
 data class Data(
 
@@ -169,4 +169,4 @@ data class Data(
 
 	@field:SerializedName("results")
 	val results: List<ResultsItem>? = null
-): Serializable
+)
