@@ -1,5 +1,6 @@
 package com.example.marvel.repository.service
 
+import com.example.marvel.repository.model.ApiError
 import com.example.marvel.repository.model.DetailResponse
 import com.example.marvel.repository.model.ListResponse
 import retrofit2.Call
