@@ -18,8 +18,6 @@ import com.example.marvel.repository.model.ResultsItem
 class DetailFragment : Base.BaseFragment<FragmentDetailBinding>(R.layout.fragment_detail) {
 
     private val detailViewModel: DetailViewModel by viewModels()
-    private var path: String? = null
-    private var extension: String? = null
 
     override fun init() {
         arguments?.getString("id")?.let { it ->
@@ -39,10 +37,6 @@ class DetailFragment : Base.BaseFragment<FragmentDetailBinding>(R.layout.fragmen
         arguments?.getString("path")?.let {
             path = it
         }
-        arguments?.getString("extension")?.let {
-            extension = it
-        }
-        setImage(path.toString().plus(".").plus(extension))
     }
 
     private fun setup(result: ResultsItem?) {

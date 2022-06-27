@@ -48,11 +48,7 @@ class ListFragment : Base.BaseFragment<FragmentListBinding>(R.layout.fragment_li
         findNavController().navigate(
             R.id.action_FirstFragment_to_DetailFragment,
             bundleOf(
-                "id" to item.id.toString(),
-                "name" to item.name,
-                "path" to item.thumbnail?.path,
-                "extension" to item.thumbnail?.extension,
-                "description" to item.description
+                "id" to item.id.toString()
             )
         )
     }
