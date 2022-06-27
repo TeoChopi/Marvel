@@ -1,6 +1,5 @@
 package com.example.marvel.ui.detail
 
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
@@ -23,19 +22,9 @@ class DetailFragment : Base.BaseFragment<FragmentDetailBinding>(R.layout.fragmen
         arguments?.getString("id")?.let { it ->
             detailViewModel.getDetail(it).observe(this) { detail ->
                 detail?.let {
-                    //setup(detail.data?.results?.get(0))
+                    setup(detail.data?.results?.get(0))
                 }
             }
-        }
-        arguments?.getString("name")?.let {
-            (activity as AppCompatActivity?)!!.supportActionBar!!.title = it
-            binding.txtName.text = it
-        }
-        arguments?.getString("description")?.let {
-            binding.txtDescription.text = it
-        }
-        arguments?.getString("path")?.let {
-            path = it
         }
     }
 
