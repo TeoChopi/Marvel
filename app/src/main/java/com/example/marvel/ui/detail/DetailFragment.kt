@@ -1,6 +1,5 @@
 package com.example.marvel.ui.detail
 
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
@@ -18,31 +17,15 @@ import com.example.marvel.repository.model.ResultsItem
 class DetailFragment : Base.BaseFragment<FragmentDetailBinding>(R.layout.fragment_detail) {
 
     private val detailViewModel: DetailViewModel by viewModels()
-    private var path: String? = null
-    private var extension: String? = null
 
     override fun init() {
         arguments?.getString("id")?.let { it ->
             detailViewModel.getDetail(it).observe(this) { detail ->
                 detail?.let {
-                    //setup(detail.data?.results?.get(0))
+                    setup(detail.data?.results?.get(0))
                 }
             }
         }
-        arguments?.getString("name")?.let {
-            (activity as AppCompatActivity?)!!.supportActionBar!!.title = it
-            binding.txtName.text = it
-        }
-        arguments?.getString("description")?.let {
-            binding.txtDescription.text = it
-        }
-        arguments?.getString("path")?.let {
-            path = it
-        }
-        arguments?.getString("extension")?.let {
-            extension = it
-        }
-        setImage(path.toString().plus(".").plus(extension))
     }
 
     private fun setup(result: ResultsItem?) {
