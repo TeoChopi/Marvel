@@ -1,7 +1,6 @@
 package com.example.marvel
 
 import com.example.marvel.repository.model.DetailResponse
-import com.example.marvel.repository.model.ListResponse
 import com.example.marvel.repository.service.MarvelApi
 import com.example.marvel.repository.service.MarvelService
 import com.example.marvel.utils.Common.getHash
